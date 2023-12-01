@@ -542,8 +542,9 @@ $project4=Month::join('firms','months.firm_id','=','firms.id')->select("months.i
     $variable=$end_date;
     session()->put('variable0', $variable0);
     session()->put('variable', $variable);
-  
-    return View('month.list8',compact('today','user','firm','today2','project2','today3','project4','today4','start_date','end_date','month','project22'));
+  $project6=Month::join('firms','months.firm_id','=','firms.id')->select("months.id as czas",'months.*','firms.*')->where("months.status1", "=", "Zaplanowano")->where("firms.kpir", "=", "KPiR")->orderby('close_date',"desc")->orderby('close_time',"desc")->get(); 
+
+    return View('month.list8',compact('today','user','firm','today2','project2','today3','project4','today4','start_date','end_date','month','project22','project6'));
 }
 public function searchkh(Request $request, UserRepository $userRepo, FirmRepository $firmRepo,MonthRepository $monthRepo){
         
@@ -602,8 +603,9 @@ $project4=Month::join('firms','months.firm_id','=','firms.id')->select("months.i
     $variable=$end_date;
     session()->put('variable0', $variable0);
     session()->put('variable', $variable);
-  
-    return View('month.list10',compact('today','user','firm','today2','project2','today3','project4','today4','start_date','end_date','month','project22'));
+  $project6=Month::join('firms','months.firm_id','=','firms.id')->select("months.id as czas",'months.*','firms.*')->where("months.status1", "=", "Zaplanowano")->where("firms.kh", "=", "KH")->orderby('close_date',"desc")->orderby('close_time',"desc")->get();  
+
+    return View('month.list10',compact('today','user','firm','today2','project2','today3','project4','today4','start_date','end_date','month','project22','project6'));
 }
 public function indexkh(UserRepository $userRepo, FirmRepository $firmRepo, TaskRepository $taskRepo,MonthRepository $monthRepo){
     if(Auth::user()->permissions != 'Administrator'){
